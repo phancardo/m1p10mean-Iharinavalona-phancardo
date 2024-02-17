@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const routers = require('./routes/route');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,37 +11,82 @@ app.use(bodyParser.json());
 
 // Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/test')
-    .then(() => console.log('MongoDB connected'))
+    .then(() =>
+    
+    console.log('MongoDB connected'))
     .catch(err => console.error('Error connecting to MongoDB', err));
+    //const db=client.db('DBBeaute')
 
+
+app.use(routers);
 
 // Define Schema
-const Schema = mongoose.Schema;
-const itemSchema = new Schema({
-    lastname :String,
-	firstname :String,
-	login :String,
-	email :String,
-	password :String,
-	created_at : Date,
-	updated_at: Date
-});
-const Item = mongoose.model('client', itemSchema);
+// const Schema = mongoose.Schema;
+// const itemSchema = new Schema({
+//     lastname :String,
+// 	firstname :String,
+// 	login :String
+// 	// email :String,
+// 	// password :String,
+// 	// created_at : Date,
+// 	// updated_at: Date
+// });
+
+// // const RDV = mongoose.model('RendezVous', {
+// //     subject: String,
+// //     client: { type: mongoose.Schema.Types.ObjectId, ref: 'client' },
+// //   });
+
+// const clientBase = mongoose.model('client', itemSchema);
 
 // // Routes
-app.get('/items', async (req, res) => {
-    console.log('ato')
-    try {
-        const items = await Item.find();
-        console.log(items)
-        res.json(items);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
+// app.get('/clients', async (req, res) => {
+//     console.log('ato')
+//     try {
+//         const items = await clientBase.find();
+//         console.log(items)
+//         res.json(items);
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// });
+
+// app.post('/clients',  (req, res) => {
+   
+//     const item = new clientBase({
+//         lastname: req.body.lastname,
+//         firstname: req.body.firstname,
+//         login: req.body.login
+//     });
+//     console.log(item)
+//     try {
+//         const newItem =  item.save();
+//         res.status(201).json(newItem);
+//         console.log('success')
+//     } catch (err) {
+//         res.status(400).json({ message: err.message });
+//     }
+//   });
+
+//   app.post('/rendezVous', async (req, res) => {
+   
+//     const item = new clientBase({
+//         lastname: req.body.lastname,
+//         email: req.body.email,
+//         password: req.body.password
+//     });
+//     try {
+//         const newItem = await item.save();
+//         res.status(201).json(newItem);
+//         console.log('success')
+//     } catch (err) {
+//         res.status(400).json({ message: err.message });
+//     }
+//   });
+
 
 // app.post('/items', async (req, res) => {
-//     const item = new Item({
+//     const item = new clientBase({
 //         name: req.body.name
 //     });
 //     try {

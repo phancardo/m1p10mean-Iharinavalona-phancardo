@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 const itemSchema = new Schema({
+    id : String,
     lastname :String,
 	firstname :String,
 	login :String,
@@ -11,5 +12,5 @@ const itemSchema = new Schema({
 	updated_at: Date
 });
 
-const clientBase = mongoose.model('Client', itemSchema);
+const clientBase = mongoose.model('Manager', itemSchema);
 module.exports = clientBase

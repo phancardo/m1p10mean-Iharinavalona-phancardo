@@ -11,5 +11,5 @@ const itemSchema = new Schema({
 	updated_at: Date
 });
 
-const clientBase = mongoose.model('Client', itemSchema);
+const clientBase = mongoose.model('Employe', itemSchema);
 module.exports = clientBase
